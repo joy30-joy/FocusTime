@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace
+    ports:
+      - "3000:3000"  # For frontend (React/Vue/etc)
+      - "5000:5000"  # For backend API
+    environment:
+      - NODE_ENV=development
+    working_dir: /workspace
+    # Add these if you need MongoDB
+    # depends_on:
+    #   - mongo
+    
+  # Uncomment if you need MongoDB
+  # mongo:
+  #   image: mongo:6
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: example
+
+# Uncomment if using MongoDB
+# volumes:
+#   mongodb_data:
